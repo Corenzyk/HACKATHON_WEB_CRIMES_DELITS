@@ -30,6 +30,7 @@
 
     <script type="text/javascript">
     var map;
+
     function InitialiserCarte() {
         map = L.map('map').setView([
         46.8, 2.33629344655
@@ -44,12 +45,31 @@
 
         osm.addTo(map);
 
+        function highlightFeature(e) {
+            const layer = e.target;
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.4
+            });
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
+
+        function resetHighlight(e) {
+		    geojson.resetStyle(e.target);
+	    	info.update();
+	    }
+
         function zoomToFeature(e) {
             map.fitBounds(e.target.getBounds());
         }
 
         function onEachFeature(feature, layer) {
             layer.on({
+			    mouseover: highlightFeature,
+			    mouseout: resetHighlight,
                 click: zoomToFeature
             });
         }
