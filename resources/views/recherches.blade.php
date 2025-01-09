@@ -1,5 +1,3 @@
-<!-- resources/views/recherches.blade.php -->
-
 <x-main-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Tiroir de filtres -->
@@ -14,29 +12,58 @@
             <div id="filter-drawer" class="hidden mt-4 p-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
                 <form method="GET" action="{{ url('recherches') }}" onsubmit="return validateFilters()">
                     <div class="grid grid-cols-2 gap-4">
+
                         <!-- Classe d'infraction -->
                         <div>
                             <label for="classe" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Classe d'infraction</label>
-                            <input 
-                                type="text" 
-                                id="classe" 
-                                name="classe" 
-                                value="{{ request('classe') }}" 
-                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
+                            <select id="classe" name="classe" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <option value="">Sélectionner une classe</option>
+                                <option value="Autres coups et blessures volontaires" {{ request('classe') == 'Autres coups et blessures volontaires' ? 'selected' : '' }}>Autres coups et blessures volontaires</option>
+                                <option value="Cambriolages de logement" {{ request('classe') == 'Cambriolages de logement' ? 'selected' : '' }}>Cambriolages de logement</option>
+                                <option value="Coups et blessures volontaires" {{ request('classe') == 'Coups et blessures volontaires' ? 'selected' : '' }}>Coups et blessures volontaires</option>
+                                <option value="Coups et blessures volontaires intrafamiliaux" {{ request('classe') == 'Coups et blessures volontaires intrafamiliaux' ? 'selected' : '' }}>Coups et blessures volontaires intrafamiliaux</option>
+                                <option value="Destructions et dégradations volontaires" {{ request('classe') == 'Destructions et dégradations volontaires' ? 'selected' : '' }}>Destructions et dégradations volontaires</option>
+                                <option value="Escroqueries" {{ request('classe') == 'Escroqueries' ? 'selected' : '' }}>Escroqueries</option>
+                                <option value="Homicides" {{ request('classe') == 'Homicides' ? 'selected' : '' }}>Homicides</option>
+                                <option value="Trafic de stupéfiants" {{ request('classe') == 'Trafic de stupéfiants' ? 'selected' : '' }}>Trafic de stupéfiants</option>
+                                <option value="Usage de stupéfiants" {{ request('classe') == 'Usage de stupéfiants' ? 'selected' : '' }}>Usage de stupéfiants</option>
+                                <option value="Vols avec armes" {{ request('classe') == 'Vols avec armes' ? 'selected' : '' }}>Vols avec armes</option>
+                                <option value="Vols dans les véhicules" {{ request('classe') == 'Vols dans les véhicules' ? 'selected' : '' }}>Vols dans les véhicules</option>
+                                <option value="Vols de véhicules" {{ request('classe') == 'Vols de véhicules' ? 'selected' : '' }}>Vols de véhicules</option>
+                                <option value="Vols d'accessoires sur véhicules" {{ request('classe') == 'Vols d\'accessoires sur véhicules' ? 'selected' : '' }}>Vols d'accessoires sur véhicules</option>
+                                <option value="Vols sans violence contre des personnes" {{ request('classe') == 'Vols sans violence contre des personnes' ? 'selected' : '' }}>Vols sans violence contre des personnes</option>
+                                <option value="Vols violents sans arme" {{ request('classe') == 'Vols violents sans arme' ? 'selected' : '' }}>Vols violents sans arme</option>
+                                <option value="Violences sexuelles" {{ request('classe') == 'Violences sexuelles' ? 'selected' : '' }}>Violences sexuelles</option>
+                            </select>
+                         </div>
 
-                        <!-- Année -->
-                        <div>
-                            <label for="annee" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année</label>
-                            <input 
-                                type="text" 
-                                id="annee" 
-                                name="annee" 
-                                value="{{ request('annee') }}" 
-                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
+                        <!-- Années-->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="annee_min" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année min</label>
+                                <input 
+                                    type="number" 
+                                    id="annee_min" 
+                                    name="annee_min" 
+                                    value="{{ request('annee_min') }}"
+                                    min="2016" 
+                                    max="2023"
+                                    class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                />
+                            </div>
+                            <div>
+                                <label for="annee_max" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année max</label>
+                                <input 
+                                    type="number" 
+                                    id="annee_max" 
+                                    name="annee_max" 
+                                    value="{{ request('annee_max') }}"
+                                    min="2016" 
+                                    max="2023"
+                                    class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                />
+                            </div>
+                         </div>
 
                         <!-- Département -->
                         <div>
@@ -58,30 +85,6 @@
                                 id="region" 
                                 name="region" 
                                 value="{{ request('region') }}" 
-                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
-
-                        <!-- Faits -->
-                        <div>
-                            <label for="faits" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Faits</label>
-                            <input 
-                                type="text" 
-                                id="faits" 
-                                name="faits" 
-                                value="{{ request('faits') }}" 
-                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            />
-                        </div>
-
-                        <!-- Population -->
-                        <div>
-                            <label for="population" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Population</label>
-                            <input 
-                                type="text" 
-                                id="population" 
-                                name="population" 
-                                value="{{ request('population') }}" 
                                 class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />
                         </div>
@@ -116,7 +119,7 @@
                                         Classe
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Année
+                                        Année min
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                         Département
@@ -143,12 +146,14 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
-                                            <span class="text-xs text-gray-500">({{ $crime['Code.département'] }})</span>
+                                            <span class="font-medium">{{ $crime['Code.département'] }}</span>
+                                            <span class="text-xs text-gray-500">{{ $crime['Code.département'] }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
-                                            <span class="text-xs text-gray-500">({{ $crime['Code.région'] }})</span>
+                                            <span class="font-medium">{{ $crime['Code.région'] }}</span>
+                                            <span class="text-xs text-gray-500">{{ $crime['Code.région'] }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
@@ -162,14 +167,16 @@
                             </tbody>
                         </table>
                     </div>
+                    
+                    <!-- Pagination -->
                     <div class="mt-4">
                         @if(isset($reponseData['links']['prev']))
-                            <a href="{{ url('recherches?page=' . ($reponseData['meta']['page'] - 1)) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ url('recherches?' . http_build_query(array_merge(request()->all(), ['page' => ($reponseData['meta']['page'] - 1)]))) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Page précédente
                             </a>
                         @endif
                         @if(isset($reponseData['links']['next']))
-                            <a href="{{ url('recherches?page=' . ($reponseData['meta']['page'] + 1)) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ url('recherches?' . http_build_query(array_merge(request()->all(), ['page' => ($reponseData['meta']['page'] + 1)]))) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Page suivante
                             </a>
                         @endif
