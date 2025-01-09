@@ -1,5 +1,103 @@
 <x-main-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Tiroir de filtres -->
+        <div class="mb-6">
+            <button 
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button"
+                onclick="toggleFilterDrawer()"
+            >
+                Afficher les filtres
+            </button>
+            <div id="filter-drawer" class="hidden mt-4 p-4 bg-gray-100 border border-gray-300 rounded">
+                <form method="GET" action="{{ url('recherches') }}" onsubmit="return validateFilters()">
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Classe d'infraction -->
+                        <div>
+                            <label for="classe" class="block text-sm font-medium text-gray-700">Classe d'infraction</label>
+                            <input 
+                                type="text" 
+                                id="classe" 
+                                name="classe" 
+                                value="{{ request('classe') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <!-- Année -->
+                        <div>
+                            <label for="annee" class="block text-sm font-medium text-gray-700">Année</label>
+                            <input 
+                                type="text" 
+                                id="annee" 
+                                name="annee" 
+                                value="{{ request('annee') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <!-- Département -->
+                        <div>
+                            <label for="departement" class="block text-sm font-medium text-gray-700">Département</label>
+                            <input 
+                                type="text" 
+                                id="departement" 
+                                name="departement" 
+                                value="{{ request('departement') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <!-- Région -->
+                        <div>
+                            <label for="region" class="block text-sm font-medium text-gray-700">Région</label>
+                            <input 
+                                type="text" 
+                                id="region" 
+                                name="region" 
+                                value="{{ request('region') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <!-- Faits -->
+                        <div>
+                            <label for="faits" class="block text-sm font-medium text-gray-700">Faits</label>
+                            <input 
+                                type="text" 
+                                id="faits" 
+                                name="faits" 
+                                value="{{ request('faits') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+
+                        <!-- Population -->
+                        <div>
+                            <label for="population" class="block text-sm font-medium text-gray-700">Population</label>
+                            <input 
+                                type="text" 
+                                id="population" 
+                                name="population" 
+                                value="{{ request('population') }}" 
+                                class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <button 
+                            type="submit" 
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Appliquer les filtres
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tableau des infractions -->
         <div class="grid md:grid-cols-1 gap-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
                 <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
@@ -71,4 +169,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleFilterDrawer() {
+            const drawer = document.getElementById('filter-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function validateFilters() {
+            const filters = ['classe', 'annee', 'departement', 'region', 'faits', 'population'];
+            let hasValue = false;
+
+            for (const filter of filters) {
+                const value = document.getElementById(filter).value.trim();
+                if (value) {
+                    hasValue = true;
+                    break;
+                }
+            }
+
+            if (!hasValue) {
+                alert('Veuillez remplir au moins un filtre avant de soumettre.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </x-main-layout>
