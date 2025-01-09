@@ -1,3 +1,3 @@
 <x-main-layout>
-    A faire
+    a faire
 </x-main-layout>
