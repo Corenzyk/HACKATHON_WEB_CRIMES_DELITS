@@ -19,6 +19,7 @@ class RecherchesController extends Controller
     {
         $params = [];
         
+        //Vérification si les paramètres sont présent, si oui, les inclure dans le lien pour récupérer le json
         if ($request->classe) {
             $params['classe__contains'] = $request->classe;
         }

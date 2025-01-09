@@ -51,7 +51,7 @@
                 <!-- Contenu -->
                 <div class="px-6 py-4">
                     <div class="text-gray-600 dark:text-gray-400">
-                        <p>A venir</p>
+                        <p>⚠️Fonctionnalité à venir⚠️</p>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,10 @@
                 <!-- Contenu -->
                 <div class="px-6 py-4">
                     <div class="text-gray-600 dark:text-gray-400">
-                        <p>A venir</p>
+                        <!-- Lien redirigeant sur la page recherche avec le département de prérempli -->
+                        <div><a href="http://127.0.0.1:8000/recherches?classe=&annee_min=&annee_max=&departement=49&region=">Maine-et-Loire (49)</a></div>
+                        <div><a href="http://127.0.0.1:8000/recherches?classe=&annee_min=&annee_max=&departement=93&region=">Seine-Saint-Denis(93)</a></div>
+                        <div><a href="http://127.0.0.1:8000/recherches?classe=&annee_min=&annee_max=&departement=37&region=">Indre-et-Loire (37)</a></div>
                     </div>
                 </div>
             </div>

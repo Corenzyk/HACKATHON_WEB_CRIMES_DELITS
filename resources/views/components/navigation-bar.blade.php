@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <!-- Menu pour le mobile -->
+    <!-- Menu pour le mobile, ne fonctionne pas vraiment -->
     <div :class="{'block': open, 'hidden': ! open}" class="sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <a href="{{ route('home') }}" class="block pl-3 pr-4 py-2 border-l-4 {{ request()->routeIs('home') ? 'border-indigo-500 text-indigo-700 bg-indigo-50' : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300' }} text-base font-medium focus:outline-none focus:text-indigo-800 focus:bg-indigo-100 focus:border-indigo-700 transition duration-150 ease-in-out">

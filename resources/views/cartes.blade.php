@@ -4,7 +4,6 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
     
-    <!-- Taille de la carte -->
     <style>
       #map {
         width: 100%;
@@ -55,6 +54,7 @@
 
         osm.addTo(map);
 
+        //Récupération et affichage des informations du département cliquer
         function updateInfo(props) {
             document.querySelector('.info').innerHTML = props ? 
                 `<h4><b>${props.nom}</b></h4>
@@ -62,6 +62,7 @@
                 '<h4>Cliquer sur un département</h4>';
         }
 
+        //Mettre un contour au département
         function highlightFeature(e) {
             const layer = e.target;
             layer.setStyle({
@@ -73,15 +74,18 @@
             layer.bringToFront();
         }
 
+        //Réinitialiser le contour du département
         function resetHighlight(e) {
 		    geojson.resetStyle(e.target);
 	    }
 
+        //Zoomer sur le département
         function zoomToFeature(e) {
             map.fitBounds(e.target.getBounds());
             updateInfo(e.target.feature.properties);
         }
 
+        //Gestion des actions sur les départements
         function onEachFeature(feature, layer) {
             layer.on({
 			    mouseover: highlightFeature,

@@ -40,6 +40,7 @@
                         <!-- Années-->
                         <div class="grid grid-cols-2 gap-4">
                             <div>
+                                <!-- Année minimum-->
                                 <label for="annee_min" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année min</label>
                                 <input 
                                     type="number" 
@@ -52,6 +53,7 @@
                                 />
                             </div>
                             <div>
+                                <!-- Année maximum-->
                                 <label for="annee_max" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année max</label>
                                 <input 
                                     type="number" 
@@ -90,6 +92,7 @@
                         </div>
                     </div>
 
+                    <!-- Validation du formulaire de filtre -->
                     <div class="mt-4 flex justify-end">
                         <button 
                             type="submit" 
@@ -146,12 +149,14 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
+                                            <!-- Doublon, remplacer le premier par le nom du département une fois trouvé comment faire -->
                                             <span class="font-medium">{{ $crime['Code.département'] }}</span>
                                             <span class="text-xs text-gray-500">{{ $crime['Code.département'] }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
+                                            <!-- Doublon, remplacer le premier par le nom de la région une fois trouvé comment faire -->
                                             <span class="font-medium">{{ $crime['Code.région'] }}</span>
                                             <span class="text-xs text-gray-500">{{ $crime['Code.région'] }}</span>
                                         </div>
@@ -170,11 +175,13 @@
                     
                     <!-- Pagination -->
                     <div class="mt-4">
+                        <!-- Affichage du bouton uniquement s'il y a une page avant -->
                         @if(isset($reponseData['links']['prev']))
                             <a href="{{ url('recherches?' . http_build_query(array_merge(request()->all(), ['page' => ($reponseData['meta']['page'] - 1)]))) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Page précédente
                             </a>
                         @endif
+                        <!-- Affichage du bouton uniquement s'il y a une page après -->
                         @if(isset($reponseData['links']['next']))
                             <a href="{{ url('recherches?' . http_build_query(array_merge(request()->all(), ['page' => ($reponseData['meta']['page'] + 1)]))) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Page suivante
@@ -187,6 +194,7 @@
     </div>
 
     <script>
+        //Affichage du formulaire
         function toggleFilterDrawer() {
             const drawer = document.getElementById('filter-drawer');
             drawer.classList.toggle('hidden');
@@ -204,6 +212,7 @@
                 }
             }
 
+            //Impossible de soumettre le formulaire sans avoir complété au moins un champ
             if (!hasValue) {
                 alert('Veuillez remplir au moins un filtre avant de soumettre.');
                 return false;

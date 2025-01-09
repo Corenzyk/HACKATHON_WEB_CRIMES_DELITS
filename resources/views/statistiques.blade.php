@@ -16,6 +16,14 @@
                     </div>
                 </div>
             </div>
+            <!-- Utilisation de Laravel Charts, ne fonctionne pas, aucune idée de pourquoi-->
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+                <div class="max-w-7xl mx-auto mt-8">
+                    {{ $chart->container() }}
+                    {{ $chart->script() }}
+                </div>
+                
+            </div>
         </div>
     </div>
 </x-main-layout>
