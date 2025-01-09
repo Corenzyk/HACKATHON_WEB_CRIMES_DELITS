@@ -22,6 +22,7 @@ Sites inspirations :
 	- https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/#/community-reuses
 	- https://statsio.fr/securestats/
 	- https://data31tech.com/webapps/45-4K1Explorer_2/
+	- https://leafletjs.com/examples/choropleth/example.html
 
 APIs : 
 	- Données : https://tabular-api.data.gouv.fr/api/resources/acc332f6-92be-42af-9721-f3609bea8cfc/data/

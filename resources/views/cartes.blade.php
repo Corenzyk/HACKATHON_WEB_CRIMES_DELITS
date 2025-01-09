@@ -10,11 +10,13 @@
         width: 100%;
         height: 90vh;
       }
+      .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } 
+      .info h4 { margin: 0 0 5px; color: #777; }
     </style>
 
     <div id="map">
-        <!-- Bouton de zoom in/zoom out -->
         <div class="leaflet-control-container">
+            <!-- Bouton de zoom in/zoom out -->
             <div class="leaflet-top leaflet-left">
                 <div class="leaflet-control-zoom leaflet-bar leaflet-control">
                     <a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false">
@@ -25,6 +27,8 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Box d'informations -->
             <div class="leaflet-top leaflet-right">
                 <div class="info leaflet-control">
                     <h4>Cliquer sur un département</h4>
@@ -51,6 +55,13 @@
 
         osm.addTo(map);
 
+        function updateInfo(props) {
+            document.querySelector('.info').innerHTML = props ? 
+                `<h4><b>${props.nom}</b></h4>
+                <p>Code: ${props.code}<br>` :
+                '<h4>Cliquer sur un département</h4>';
+        }
+
         function highlightFeature(e) {
             const layer = e.target;
             layer.setStyle({
@@ -60,27 +71,26 @@
                 fillOpacity: 0.4
             });
             layer.bringToFront();
-            info.update(layer.feature.properties);
         }
 
         function resetHighlight(e) {
 		    geojson.resetStyle(e.target);
-	    	info.update();
 	    }
 
         function zoomToFeature(e) {
             map.fitBounds(e.target.getBounds());
+            updateInfo(e.target.feature.properties);
         }
 
         function onEachFeature(feature, layer) {
             layer.on({
 			    mouseover: highlightFeature,
-			    mouseout: resetHighlight,
-                click: zoomToFeature
+                click: zoomToFeature,
+                mouseout: resetHighlight,
             });
         }
 
-        geojson = new L.GeoJSON.AJAX(["https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"], {
+        geojson = new L.GeoJSON.AJAX(["https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-avec-outre-mer.geojson"], {
             onEachFeature:onEachFeature
         }).addTo(map);
     }

@@ -23,7 +23,7 @@ class RecherchesController extends Controller
         // Appel à l'API avec la page demandée
         $reponse = Http::withOptions([
             'verify' => false,
-        ])->get('https://tabular-api.data.gouv.fr/api/resources/acc332f6-92be-42af-9721-f3609bea8cfc/data/?page_size=50', [
+        ])->get('https://tabular-api.data.gouv.fr/api/resources/acc332f6-92be-42af-9721-f3609bea8cfc/data/', [
             'page' => $currentPage
         ]);
 
