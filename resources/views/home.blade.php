@@ -11,13 +11,14 @@
                 <!-- Titre -->
                 <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
                     <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                        Choisir un département/région
+                        Qui sommes-nous ?
                     </h3>
                 </div>
                 <!-- Contenu -->
                 <div class="px-6 py-4">
                     <div class="text-gray-600 dark:text-gray-400">
-                        <p>Contenu de la première case à venir...</p>
+                        <p>Nous sommes une association des familles vient de se créer ayant pour objectif d’aider les familles à choisir un cadre de vie agréable 
+                        répondant à des critères de services disponibles (crèches, écoles, médecins, médiathèques…), de sécurité, de choix urbain ou rural…</p>
                     </div>
                 </div>
             </div>
@@ -27,13 +28,46 @@
                 <!-- Titre -->
                 <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
                     <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                        Quelques informations
+                        Que faisons-nous ?
                     </h3>
                 </div>
                 <!-- Contenu -->
                 <div class="px-6 py-4">
                     <div class="text-gray-600 dark:text-gray-400">
-                        <p>Contenu de la deuxième case à venir...</p>
+                        <p>Chez Nouveaux Propriétaires, nous récupérons des données publiques. Ces chiffres proviennent des données officielles du ministère de 
+                        l’Intérieur. Nouveaux Propriétaires ne sera pas tenu responsable en cas d’erreur dans les données.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container 3 -->
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+                <!-- Titre -->
+                <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        Quelques statistiques
+                    </h3>
+                </div>
+                <!-- Contenu -->
+                <div class="px-6 py-4">
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <p>A venir</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container 4 -->
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
+                <!-- Titre -->
+                <div class="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        Recherchez votre département
+                    </h3>
+                </div>
+                <!-- Contenu -->
+                <div class="px-6 py-4">
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <p>A venir</p>
                     </div>
                 </div>
             </div>
