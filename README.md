@@ -38,3 +38,5 @@ Créations non utilisée :
 Améliorations possibles :
 	- Ajout de la recherche (tableau avec zone de recherche sur département, type de délits, etc) et de l'onglet statistiques (camembert, evolutions, etc)
 	- Développement pour le mobile plus poussé
+	- Carte : Couleur des régions et départements selon la dangerosité
+	- Statistiques : Recherches de région et départements  (camembert, crime les plus présents), recherches de crimes précis (le département avec le plus de ce crime, camembert)

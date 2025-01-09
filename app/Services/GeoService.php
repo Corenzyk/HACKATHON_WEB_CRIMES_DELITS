@@ -59,13 +59,4 @@ class GeoService
     {
         return $this->regions[$code] ?? $code;
     }
-
-    public function enrichData($data)
-    {
-        return array_map(function ($item) {
-            $item['departement_nom'] = $this->getDepartementName($item['Code.département']);
-            $item['region_nom'] = $this->getRegionName($item['Code.région']);
-            return $item;
-        }, $data);
-    }
 }

@@ -1,3 +1,5 @@
+<!-- resources/views/recherches.blade.php -->
+
 <x-main-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Tiroir de filtres -->
@@ -9,12 +11,12 @@
             >
                 Afficher les filtres
             </button>
-            <div id="filter-drawer" class="hidden mt-4 p-4 bg-gray-100 border border-gray-300 rounded">
+            <div id="filter-drawer" class="hidden mt-4 p-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
                 <form method="GET" action="{{ url('recherches') }}" onsubmit="return validateFilters()">
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Classe d'infraction -->
                         <div>
-                            <label for="classe" class="block text-sm font-medium text-gray-700">Classe d'infraction</label>
+                            <label for="classe" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Classe d'infraction</label>
                             <input 
                                 type="text" 
                                 id="classe" 
@@ -26,7 +28,7 @@
 
                         <!-- Année -->
                         <div>
-                            <label for="annee" class="block text-sm font-medium text-gray-700">Année</label>
+                            <label for="annee" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Année</label>
                             <input 
                                 type="text" 
                                 id="annee" 
@@ -38,7 +40,7 @@
 
                         <!-- Département -->
                         <div>
-                            <label for="departement" class="block text-sm font-medium text-gray-700">Département</label>
+                            <label for="departement" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Département</label>
                             <input 
                                 type="text" 
                                 id="departement" 
@@ -50,7 +52,7 @@
 
                         <!-- Région -->
                         <div>
-                            <label for="region" class="block text-sm font-medium text-gray-700">Région</label>
+                            <label for="region" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Région</label>
                             <input 
                                 type="text" 
                                 id="region" 
@@ -62,7 +64,7 @@
 
                         <!-- Faits -->
                         <div>
-                            <label for="faits" class="block text-sm font-medium text-gray-700">Faits</label>
+                            <label for="faits" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Faits</label>
                             <input 
                                 type="text" 
                                 id="faits" 
@@ -74,7 +76,7 @@
 
                         <!-- Population -->
                         <div>
-                            <label for="population" class="block text-sm font-medium text-gray-700">Population</label>
+                            <label for="population" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Population</label>
                             <input 
                                 type="text" 
                                 id="population" 
@@ -131,7 +133,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                @foreach($crimes as $crime)
+                                @foreach($reponseData['data'] as $crime)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         {{ $crime['classe'] }}
@@ -141,13 +143,11 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
-                                            <span class="font-medium">{{ $crime['departement_nom'] }}</span>
                                             <span class="text-xs text-gray-500">({{ $crime['Code.département'] }})</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         <div class="flex flex-col">
-                                            <span class="font-medium">{{ $crime['region_nom'] }}</span>
                                             <span class="text-xs text-gray-500">({{ $crime['Code.région'] }})</span>
                                         </div>
                                     </td>
@@ -163,7 +163,16 @@
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $crimes->links() }}
+                        @if(isset($reponseData['links']['prev']))
+                            <a href="{{ url('recherches?page=' . ($reponseData['meta']['page'] - 1)) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Page précédente
+                            </a>
+                        @endif
+                        @if(isset($reponseData['links']['next']))
+                            <a href="{{ url('recherches?page=' . ($reponseData['meta']['page'] + 1)) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Page suivante
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

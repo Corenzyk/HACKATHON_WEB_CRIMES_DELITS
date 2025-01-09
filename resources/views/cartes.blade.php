@@ -25,11 +25,17 @@
                     </a>
                 </div>
             </div>
+            <div class="leaflet-top leaflet-right">
+                <div class="info leaflet-control">
+                    <h4>Cliquer sur un département</h4>
+                </div>
+            </div>  
         </div>
     </div>
 
     <script type="text/javascript">
     var map;
+    var geojson;
 
     function InitialiserCarte() {
         map = L.map('map').setView([
@@ -74,7 +80,7 @@
             });
         }
 
-        var departement = new L.GeoJSON.AJAX(["https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions-version-simplifiee.geojson"], {
+        geojson = new L.GeoJSON.AJAX(["https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/departements-version-simplifiee.geojson"], {
             onEachFeature:onEachFeature
         }).addTo(map);
     }
